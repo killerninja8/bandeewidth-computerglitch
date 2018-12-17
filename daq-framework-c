@@ -1,0 +1,44 @@
+/*  This is the general DAQ framework with predefined boolean symbolic constants and an empty workfunction. Got not much reason to upload this, but I hope this makes your work a tad bit faster.  */
+
+
+#include <stdio.h>
+#include <stdlib.h> 
+
+#define TRUE 1 
+#define FALSE 0
+
+/*function prototype*/
+function_type WorkFunction();  
+int main()
+  {
+
+printf(“please choose a number - 0 for hardware and 1-7 for various simulators”);
+scanf(“%d”, setupnum);
+
+/*setting up the DAQ*/ 
+if(setupDAQ(setupnum) == TRUE)
+  {
+WorkFunction();
+}
+else
+  {
+printf(“ERROR”);
+}
+
+System(“PAUSE”);
+return 0; 
+
+  }
+ 
+ 
+function_type WorkFunction()  
+ {
+  
+  while(ContinueSuperLoop()== TRUE)
+    {
+    printf("The DAQ is running.");
+    }
+    
+    printf("The DAQ is closing.");
+    
+ }
