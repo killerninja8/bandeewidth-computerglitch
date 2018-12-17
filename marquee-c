@@ -1,0 +1,161 @@
+/* c file for marquee/ scrolling text on a DAQ simulator or hardware with the option to change speed and direction. I do lack a lookup table for numbers or alphabets which I apologize for. however, I would be eternally grateful if someone would upload a pre-existing table in the right place. Thank you so much! And as always, errors, suggestions, comments, or ANYTHING ELSE is greatly appreciated. */
+
+
+
+#define _CRT_SECURE_NO_WARNINGS       /*need to do this for visual studio*/ 
+
+/*header files included in this project*/ 
+#include <stdio.h>
+#include <stdlib.h>
+#include <DAQlib.h>
+#include <Windows.h>
+#include <string.h> 
+
+/*define boolean*/
+#define TRUE 1
+#define FALSE 0
+ 
+/* define on and off*/ 
+#define ON 1
+#define OFF 0
+
+/*defining direction of flow*/ 
+#define right 1 
+#define left 0 
+
+/*defining symbolic constants*/
+#define displays 8
+#define characters 74     /*74 character limit seems to be the norm, so I’ve included it*/
+
+/* define output channels*/
+#define HARDWARE 0 
+#define SIMULATOR 4
+ 
+  /*define time delay in milliseconds*/
+#define slow 1000
+#define fast 500
+
+/*defining switches*/ 
+#define switch0 0
+#define switch1 1 
+
+/*function prototypes*/ 
+void hereisthescrollingmessage(void);
+void displaycharacter(char character, int pos);
+void displaystring(char string[]);
+void changedirection(int direction, char string[], char new_char);
+
+int main()
+{
+printf(“please choose a number - 0 for hardware and 4 for simulator”);
+scanf(“%d”, setupnum);
+
+/*setting up the DAQ*/ 
+if(setupDAQ(setupnum) == TRUE)
+{
+hereisthescrollingmessage();
+}
+else{
+printf(“ERROR”);
+}
+
+System(“PAUSE”);
+return 0; 
+
+void hereisthescrollingmessage(void) 
+{
+char newchar;
+char display[displays] = {‘ ‘};
+
+int length = strlen(text)
+
+int index = 0;
+
+switchread_0 = digitalRead(switch0);
+switchread_1 = digitalRead(switch1);
+
+printf(“enter a word to display”)
+scanf(“%c”, &word)
+
+while(TRUE)
+{
+text = getchar()
+string[index] = text;
+index++;
+
+if(text = ‘/n’)
+break; 
+}
+
+while(continueSuperLoop()== TRUE)
+{
+	for(index 0; index<displays+ length; index++){
+
+if(switchread_0 == ON){
+	delay = slow;
+}else{
+	delay = fast;
+}
+
+sleep(1000);        /*mandatory sleep after text is over*/
+
+if(switchread_1 == TRUE){
+	direction = right;
+}else{
+	direction = left;
+}
+
+changedirection(direction, display, newchar);
+displaystring(display);
+Sleep(delay);
+
+}
+}
+}
+
+void changedirection( int direction, char string[], char newchar){
+	int index;
+
+	if(direction == left){
+	for(index = 0; index < displays; index++){
+	string[index] = string [index++];
+	}
+	string[display -1] = newchar;
+	}
+
+	else{
+	for(index = displays ; index => 0; —index){
+		string[index] = string[index -1];
+	}
+	string[0] = newchar;
+	}
+	}
+
+void displaycharacter(char character, int position){
+
+/*lookup table for alphabets*/ 
+
+const int alphabets[] = { }
+
+}
+
+void displaystring(char string[]){
+int index = 0; 
+
+	for(index = displays-1; index >=0; index=index - 1)
+	{
+	displaycharacter(string[index], displays - (index +1));
+	}
+
+}
+
+
+
+
+	
+
+
+
+ 
+
+ 
